@@ -78,6 +78,7 @@ function mainMenu(person, people) {
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
+    
             let personDescendants = findPersonDescendants(person[0], people);
             alert(personDescendants);
             break;
@@ -140,8 +141,18 @@ function displayPeople(people) {
 function displayPerson(person) {
     let personInfo = `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `Date of Birth: ${person.dob}\n`;
+    personInfo += `Height: ${person.height}\n`;
+    personInfo += `Weight: ${person.weight}\n`;
+    personInfo += `Eye Color: ${person.eyeColor}\n`;
+    personInfo += `Occupation: ${person.occupation}\n`;
+    personInfo += `Parents: ${person.parents}\n`;
+    personInfo += `Current Spouse: ${person.currentSpouse}\n`;
+
+
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
-    alert(personInfo);
+    return(personInfo);
 }
 // End of displayPerson()
 
@@ -184,3 +195,11 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function findSpouse(person, people) {
+    return people.filter( el => (person.currentSpouse === el.id) );
+}
+
+function findFamily(person, people){
+    let spouseObjArray = findSpouse(person,people);
+}
