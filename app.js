@@ -200,6 +200,22 @@ function findSpouse(person, people) {
     return people.filter( el => (person.currentSpouse === el.id) );
 }
 
-function findFamily(person, people){
+function findParents(person, people) {
+   let parents = people.filter (function (el){
+    if (person.parents.includes(el.id)){
+        return true;
+    }
+   });
+
+   return parents
+}
+
+function findPersonFamily(person, people){
     let spouseObjArray = findSpouse(person,people);
+    let parentObjArray = findParents(person, people);
+    console.log(`The person that you are looking for has ${parentObjArray.length} parents. They are ${parentObjArray}. They also have a spouse, and they are ${spouseObjArray}`)
+}
+
+function findPersonDescendants(people, array = []) {
+    let descendants = people.
 }
