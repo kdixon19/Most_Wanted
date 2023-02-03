@@ -210,10 +210,12 @@ function findParents(person, people) {
 
 function findSiblings(person, people) {
     let sibling = people.filter (function(el){
-        if (person.lastName === el.lastName) {
-            if (person.parents !== el.id) {
+        if (person.lastName === el.lastName) { {
                 if (person.currentSpouse != el.id){
-                    return true;
+                    if (person.parents.includes(el.id)){
+                        return false;
+                    }
+                    else return true;
                 }
             }
         }
@@ -226,5 +228,10 @@ function findPersonFamily(person, people){
     let spouseObjArray = findSpouse(person,people);
     let parentObjArray = findParents(person, people);
     let siblingObjArray = findSiblings(person, people);
-    console.log(`The person that you are looking for has ${parentObjArray.length} parents. They are ${parentObjArray}. They have ${siblingObjArray.length} siblings, they are ${siblingObjArray}. They also have a spouse, and they are ${spouseObjArray}`)
+    let personFamily = `Parent: ${parentObjArray.firstName} ${parentObjArray.lastName}\n`;
+    personFamily += `Sibling: ${siblingObjArray.firstName} ${siblingObjArray.lastName}\n`;
+    personFamily += `Spouse: ${spouseObjArray.firstName} ${spouseObjArray.lastName}\n`;
+
+    return (personFamily);
+
 }
