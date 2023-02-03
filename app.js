@@ -147,8 +147,6 @@ function displayPerson(person) {
     personInfo += `Weight: ${person.weight}\n`;
     personInfo += `Eye Color: ${person.eyeColor}\n`;
     personInfo += `Occupation: ${person.occupation}\n`;
-    personInfo += `Parents: ${person.parents}\n`;
-    personInfo += `Current Spouse: ${person.currentSpouse}\n`;
 
 
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
@@ -210,12 +208,23 @@ function findParents(person, people) {
    return parents
 }
 
+function findSiblings(person, people) {
+    let sibling = people.filter (function(el){
+        if (person.lastName === el.lastName) {
+            if (person.parents !== el.id) {
+                if (person.currentSpouse != el.id){
+                    return true;
+                }
+            }
+        }
+        });
+
+        return sibling
+    }
+
 function findPersonFamily(person, people){
     let spouseObjArray = findSpouse(person,people);
     let parentObjArray = findParents(person, people);
-    console.log(`The person that you are looking for has ${parentObjArray.length} parents. They are ${parentObjArray}. They also have a spouse, and they are ${spouseObjArray}`)
-}
-
-function findPersonDescendants(people, array = []) {
-    let descendants = people.
+    let siblingObjArray = findSiblings(person, people);
+    console.log(`The person that you are looking for has ${parentObjArray.length} parents. They are ${parentObjArray}. They have ${siblingObjArray.length} siblings, they are ${siblingObjArray}. They also have a spouse, and they are ${spouseObjArray}`)
 }
