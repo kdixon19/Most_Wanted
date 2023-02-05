@@ -210,15 +210,17 @@ function findParents(person, people) {
 
 function findSiblings(person, people) {
     let sibling = people.filter (function(el){
-        if (person.lastName === el.lastName) { {
-                if (person.currentSpouse != el.id){
-                    if (person.parents.includes(el.id)){
-                        return false;
-                    }
-                    else return true;
+        if (person.id != el.id){
+            if (person.lastName === el.lastName) { {
+                    if (person.currentSpouse != el.id){
+                        if (person.parents.includes(el.id)){
+                            return false;
+                        }
+                        else return true;
                 }
             }
         }
+    }
         });
 
         return sibling
@@ -228,10 +230,13 @@ function findPersonFamily(person, people){
     let spouseObjArray = findSpouse(person,people);
     let parentObjArray = findParents(person, people);
     let siblingObjArray = findSiblings(person, people);
-    let personFamily = `Parent: ${parentObjArray.firstName} ${parentObjArray.lastName}\n`;
-    personFamily += `Sibling: ${siblingObjArray.firstName} ${siblingObjArray.lastName}\n`;
-    personFamily += `Spouse: ${spouseObjArray.firstName} ${spouseObjArray.lastName}\n`;
-
+    let personFamily = `Spouse: ${spouseObjArray[0].firstName} ${spouseObjArray[0].lastName}\n`;
+    for (let i = 0; i < parentObjArray.length ; i++) {
+        personFamily += `Parent: ${parentObjArray[i].firstName} ${parentObjArray[i].lastName}\n`;
+    }
+    for (let i = 0; i < siblingObjArray.length ; i++) {
+        personFamily += `Sibling: ${siblingObjArray[i].firstName} ${siblingObjArray[i].lastName}\n`;
+    }
     return (personFamily);
 
 }
