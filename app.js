@@ -240,3 +240,42 @@ function findPersonFamily(person, people){
     return (personFamily);
 
 }
+
+function findPersonDescendants(person, people){
+    let childrenObjArray = findChildren(person, people);
+    let personDescendants = `Children: ${childrenObjArray[0].firstName} ${childrenObjArray[0].lastName}`
+    for (let i = 1; i < childrenObjArray.length; i++) {
+        personDescendants += `Children: ${childrenObjArray[i].firstName} ${childrenObjArray[i].lastName}\n`;
+    }
+    return(personDescendants);
+}
+
+function findChildren(person, people){
+    let children = people.filter(function(el){
+        if (el.parents.includes(person.id)){
+            return true;
+        }
+    });
+    return children
+}
+
+function searchByTraits(people){
+    let userInput = prompt('Would you like to search by one trait or multiple?')
+    if (userInput === 'multiple'){
+        searchByMultipleTraits(people);
+    }
+    elif (userInput === 'one');
+        let userInputTrait = prompt('Which trait would you like to search by?')
+        let userInputSelection = prompt('What are you looking for in that trait?')
+        let trait = people.filter(function(el){
+            if (el.userInputTrait === userInputSelection){
+                return true;
+            }
+        });
+        return trait
+
+}
+
+function searchByMultipleTraits(people) {
+    pass
+}
